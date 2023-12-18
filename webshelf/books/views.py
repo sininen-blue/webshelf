@@ -2,9 +2,9 @@ from django.shortcuts import render
 from .models import Book, Chapter
 
 
-def index(request):
-    current_book = Book.objects.get(pk=1)
-    chapter_list = Chapter.objects.filter(book__pk=1)
+def index(request, book_id):
+    current_book = Book.objects.get(pk=book_id)
+    chapter_list = Chapter.objects.filter(book__pk=book_id)
     context = {
         "book": current_book,
         "chapter_list": chapter_list,

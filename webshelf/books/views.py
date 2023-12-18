@@ -13,5 +13,7 @@ def index(request):
 
 
 def read_chapter(request, chapter_number):
-    context = {"chapter": Chapter.objects.get(chapter_number=chapter_number)}
+    chapter = Chapter.objects.get(chapter_number=chapter_number)
+    chapter_content = chapter.content.splitlines()
+    context = {"title": chapter.title, "content": chapter_content}
     return render(request, "books/chapter.html", context)

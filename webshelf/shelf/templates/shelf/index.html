@@ -7,6 +7,11 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+
+        <h2>latest books</h2>
+        {% for book in latest_book_list %}
+            <a href="{% url 'books:index' book.id %}">{{ book.title }}</a>
+        {% endfor %}
     
     </body>
 </html>

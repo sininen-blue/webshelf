@@ -1,7 +1,14 @@
-{{ title }}
+{{ chapter.title }}
 
 
 {% for line in content %}
 <p>{{ line }}</p>
 {% endfor %}
+
+<div>
+    <!-- make sure this has error handling  -->
+    <a href="{% url 'books:read_chapter' chapter.chapter_number|add:'-1' %}">Previous</a>
+    <a href="{% url 'books:index' chapter.book.id %}">Index</a>
+    <a href="{% url 'books:read_chapter' chapter.chapter_number|add:'1' %}">Next</a>
+</div>
 

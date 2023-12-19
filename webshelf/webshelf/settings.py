@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "desk.apps.DeskConfig",
     "shelf.apps.ShelfConfig",
     "books.apps.BooksConfig",
     'django.contrib.admin',

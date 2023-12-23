@@ -1,7 +1,10 @@
 from django.db import models
+from desk.models import AuthorProfile
 
 
 class Book(models.Model):
+    author = models.ForeignKey(AuthorProfile, on_delete=models.CASCADE)
+
     title = models.CharField(max_length=256)
     synopsis = models.TextField(max_length=4096)
 

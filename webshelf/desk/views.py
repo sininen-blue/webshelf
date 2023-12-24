@@ -1,4 +1,5 @@
-from django.shortcuts import render 
+from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from .forms import BookForm
 
@@ -11,7 +12,11 @@ def create_book(request):
     if request.method == "POST":
         form = BookForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = User.objects.get(
+                username=request.user.username).authorprofile
+            new_book = form.save(commit=False)
+            new_book.author = user
+            new_book.save()
             return HttpResponseRedirect("/desk/")
     else:
         form = BookForm()

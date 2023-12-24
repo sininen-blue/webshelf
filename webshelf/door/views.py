@@ -1,8 +1,10 @@
-from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import RegisterForm, LoginForm
+
+from .forms import LoginForm, RegisterForm
+from desk.models import AuthorProfile
 
 
 def login_view(request):
@@ -48,7 +50,11 @@ def register_view(request):
                 errors.append("username already exists")
             except User.DoesNotExist:
                 if password == password_confirm:
-                    User.objects.create_user(username, email=None, password=password)
+                    user = User.objects.create_user(
+                        username, email=None, password=password
+                    )
+                    AuthorProfile.objects.create(user=user)
+
                     return HttpResponseRedirect("/")
                 else:
                     errors.append("passwords do not match")

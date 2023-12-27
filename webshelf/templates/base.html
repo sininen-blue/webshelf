@@ -1,38 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    {% load static %}
-    <head>
-        <title>{{ book.title }}</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <head>
+    <title>{{ book.title }}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link href="{% static 'books/output.css' %}" rel="stylesheet">
-        <link href="{% static 'fontawesome/all.min.css' %}" rel="stylesheet">
-    </head>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" />
+    <link href="{% static 'fontawesome/all.min.css' %}" rel="stylesheet" />
+  </head>
 
-    <body class="bg-gray-800">
-        <nav class="flex items-center h-12 px-4 drop-shadow-md bg-gray-900 text-gray-100">
-            <div class="flex gap-2">
-                <a href="{% url 'shelf:index' %}">Webshelf</a>
-                <a><i class="fas fa-pencil-alt"></i> <span class="hidden sm:hidden md:inline text-gray-300">Write</span></a>
-                <a><i class="fas fa-heart"></i> <span class="hidden sm:hidden md:inline text-gray-300">My Shelf</span></a>
-                <a><i class="fas fa-list-ul"></i> <span class="hidden sm:hidden md:inline text-gray-300">Browse</span></a>
-            </div>
+  <body class="bg-gray-800">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
-            <div class="flex gap-2 ml-auto">
-                <form>
-                    <label class="opacity-0" for="search">search</label>
-                    <input class="hidden sm:hidden md:inline bg-gray-800" type="search" id="search">
+    <nav
+      id="main-nav"
+      class="flex items-center h-12 px-4 drop-shadow-md bg-gray-900 text-gray-100"
+    >
+      <div class="flex gap-2">
+        <a href="{% url 'shelf:index' %}" class="text-xl">Webshelf</a>
+        <a
+          ><i class="fas fa-pencil-alt"></i>
+          <span class="hidden sm:hidden md:inline text-gray-300">Write</span></a
+        >
+        <a
+          ><i class="fas fa-heart"></i>
+          <span class="hidden sm:hidden md:inline text-gray-300"
+            >My Shelf</span
+          ></a
+        >
+        <a
+          ><i class="fas fa-list-ul"></i>
+          <span class="hidden sm:hidden md:inline text-gray-300"
+            >Browse</span
+          ></a
+        >
+      </div>
 
-                        <!-- somehow change the nav when this is pressed when sm -->
-                    <button class="relative right-6" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-                <a>Sininenblue</a>
-            </div>
-        </nav>
+      <div class="flex gap-2 ml-auto">
+        <form>
+          <label class="opacity-0" for="search">search</label>
+          <input
+            class="hidden sm:hidden md:inline bg-gray-800"
+            type="search"
+            id="search"
+          />
 
-        <main class="max-w-screen-lg mx-auto">
-        {% block content %}{% endblock %}
-        </main>
-    </body>
+          <button
+            class="hidden sm:hidden md:inline relative right-6"
+            type="submit"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+          <button
+            hx-get="{% url 'shelf:search_partial' %}"
+            hx-target="#main-nav"
+            class="inline sm:inline md:hidden relative right-6"
+            type="submit"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <a>Sininenblue</a>
+      </div>
+    </nav>
+
+    <main class="max-w-screen-lg mx-auto">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
 </html>

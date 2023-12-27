@@ -577,6 +577,10 @@ video {
   display: block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -709,6 +713,10 @@ video {
 }
 
 @media (min-width: 640px) {
+  .sm\:inline {
+    display: inline;
+  }
+
   .sm\:hidden {
     display: none;
   }
@@ -717,5 +725,9 @@ video {
 @media (min-width: 768px) {
   .md\:inline {
     display: inline;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 }

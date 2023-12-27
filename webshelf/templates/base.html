@@ -15,39 +15,39 @@
 
     <nav
       id="main-nav"
-      class="flex items-center h-12 px-4 drop-shadow-md bg-gray-900 text-gray-100"
+      class="flex h-12 items-center bg-gray-900 px-4 text-gray-100 drop-shadow-md"
     >
       <div class="flex gap-2">
         <a href="{% url 'shelf:index' %}" class="text-xl">Webshelf</a>
         <a
           ><i class="fas fa-pencil-alt"></i>
-          <span class="hidden sm:hidden md:inline text-gray-300">Write</span></a
+          <span class="hidden text-gray-300 sm:hidden md:inline">Write</span></a
         >
         <a
           ><i class="fas fa-heart"></i>
-          <span class="hidden sm:hidden md:inline text-gray-300"
+          <span class="hidden text-gray-300 sm:hidden md:inline"
             >My Shelf</span
           ></a
         >
         <a
           ><i class="fas fa-list-ul"></i>
-          <span class="hidden sm:hidden md:inline text-gray-300"
+          <span class="hidden text-gray-300 sm:hidden md:inline"
             >Browse</span
           ></a
         >
       </div>
 
-      <div class="flex gap-2 ml-auto">
+      <div class="ml-auto flex gap-2">
         <form>
           <label class="opacity-0" for="search">search</label>
           <input
-            class="hidden sm:hidden md:inline bg-gray-800"
+            class="hidden bg-gray-800 sm:hidden md:inline"
             type="search"
             id="search"
           />
 
           <button
-            class="hidden sm:hidden md:inline relative right-6"
+            class="relative right-6 hidden sm:hidden md:inline"
             type="submit"
           >
             <i class="fas fa-search"></i>
@@ -55,7 +55,7 @@
           <button
             hx-get="{% url 'shelf:search_partial' %}"
             hx-target="#main-nav"
-            class="inline sm:inline md:hidden relative right-6"
+            class="relative right-6 inline sm:inline md:hidden"
             type="submit"
           >
             <i class="fas fa-search"></i>
@@ -65,7 +65,7 @@
       </div>
     </nav>
 
-    <main class="max-w-screen-lg mx-auto">
+    <main class="mx-auto max-w-screen-lg">
       {% block content %}{% endblock %}
     </main>
   </body>

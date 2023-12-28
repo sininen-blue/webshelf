@@ -8,3 +8,7 @@ def index(request):
         "latest_book_list": latest,
     }
     return render(request, "shelf/index.html", context)
+
+
+def search_partial(request):
+    return render(request, "search-partial.html")

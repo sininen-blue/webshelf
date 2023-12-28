@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <title>{{ book.title }}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" />
+    <link href="{% static 'fontawesome/all.min.css' %}" rel="stylesheet" />
+  </head>
+
+  <body class="bg-gray-800">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    <nav
+      id="main-nav"
+      class="flex h-12 items-center bg-gray-900 px-4 text-gray-100 drop-shadow-md"
+    >
+      <div class="flex gap-2">
+        <a href="{% url 'shelf:index' %}" class="text-xl">Webshelf</a>
+        <a
+          ><i class="fas fa-pencil-alt"></i>
+          <span class="hidden text-gray-300 sm:hidden md:inline">Write</span></a
+        >
+        <a
+          ><i class="fas fa-heart"></i>
+          <span class="hidden text-gray-300 sm:hidden md:inline"
+            >My Shelf</span
+          ></a
+        >
+        <a
+          ><i class="fas fa-list-ul"></i>
+          <span class="hidden text-gray-300 sm:hidden md:inline"
+            >Browse</span
+          ></a
+        >
+      </div>
+
+      <div class="ml-auto flex gap-2">
+        <form>
+          <label class="opacity-0" for="search">search</label>
+          <input
+            class="hidden bg-gray-800 sm:hidden md:inline"
+            type="search"
+            id="search"
+          />
+
+          <button
+            class="relative right-6 hidden sm:hidden md:inline"
+            type="submit"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+          <button
+            hx-get="{% url 'shelf:search_partial' %}"
+            hx-target="#main-nav"
+            class="relative right-6 inline sm:inline md:hidden"
+            type="submit"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <a>Sininenblue</a>
+      </div>
+    </nav>
+
+    <main class="mx-auto max-w-screen-lg">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

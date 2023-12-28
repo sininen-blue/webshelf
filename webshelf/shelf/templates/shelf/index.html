@@ -7,6 +7,10 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+        <nav>
+            <a href="/">Webshelf</a>
+            <a href="{% url 'desk:dashboard' %}">Write</a>
+        </nav>
 
         <h2>latest books</h2>
         {% for book in latest_book_list %}

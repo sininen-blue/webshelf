@@ -17,7 +17,7 @@ class Book(models.Model):
 class Chapter(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
-    chapter_number = models.IntegerField(unique=True)
+    chapter_number = models.IntegerField()
 
     title = models.CharField(max_length=256)
     content = models.TextField()

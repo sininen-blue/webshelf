@@ -13,8 +13,8 @@
 </header>
 
 <nav class="flex items-center justify-between px-4 h-8 drop-shadow-md bg-gray-900 text-gray-300">
-    <a href="{% url 'books:read_chapter' chapter.chapter_number|add:'-1' %}">Previous</a>
-    <a href="{% url 'books:read_chapter' chapter.chapter_number|add:'1' %}">Next</a>
+    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'-1' %}">Previous</a>
+    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'1' %}">Next</a>
 </nav>
 
 <!-- change this for line length -->
@@ -30,8 +30,8 @@
 
 <!-- make sure this has error handling  -->
 <nav class="flex items-center justify-between px-4 h-8 drop-shadow-md bg-gray-900 text-gray-300">
-    <a href="{% url 'books:read_chapter' chapter.chapter_number|add:'-1' %}">Previous</a>
+    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'-1' %}">Previous</a>
     <a href="{% url 'books:index' chapter.book.id %}">Index</a>
-    <a href="{% url 'books:read_chapter' chapter.chapter_number|add:'1' %}">Next</a>
+    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'1' %}">Next</a>
 </nav>
 {% endblock %}

@@ -9,7 +9,7 @@
 
 <ol>
     {% for chapter in chapter_list %}
-    <li><a href="{% url 'books:read_chapter' chapter.chapter_number %}">{{ chapter.title }}</a></li>
+    <li><a href="{% url 'books:read_chapter' book.id chapter.chapter_number %}">{{ chapter.title }}</a></li>
     {% endfor %}
 </ol>
 {% endblock %}

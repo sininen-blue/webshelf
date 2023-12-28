@@ -13,8 +13,17 @@
 </header>
 
 <nav class="flex items-center justify-between px-4 h-8 drop-shadow-md bg-gray-900 text-gray-300">
-    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'-1' %}">Previous</a>
-    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'1' %}">Next</a>
+    {% if chapter.chapter_number|add:'-1' <= 0 %}
+        <a class="text-gray-500">Previous</a>
+    {% else %}
+        <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'-1' %}">Previous</a>
+    {% endif %}
+
+    {% if chapter.chapter_number|add:'1' >= last_chapter %}
+        <a class="text-gray-500">Next</a>
+    {% else %}
+        <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'1' %}">Next</a>
+    {% endif %}
 </nav>
 
 <!-- change this for line length -->
@@ -27,11 +36,20 @@
 
 </div>
 
-
-<!-- make sure this has error handling  -->
 <nav class="flex items-center justify-between px-4 h-8 drop-shadow-md bg-gray-900 text-gray-300">
-    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'-1' %}">Previous</a>
+    {% if chapter.chapter_number|add:'-1' <= 0 %}
+        <a class="text-gray-500">Previous</a>
+    {% else %}
+        <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'-1' %}">Previous</a>
+    {% endif %}
+
     <a href="{% url 'books:index' chapter.book.id %}">Index</a>
-    <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'1' %}">Next</a>
+
+    {% if chapter.chapter_number|add:'1' >= last_chapter %}
+        <a class="text-gray-500">Next</a>
+    {% else %}
+        <a href="{% url 'books:read_chapter' book.id chapter.chapter_number|add:'1' %}">Next</a>
+    {% endif %}
 </nav>
+
 {% endblock %}

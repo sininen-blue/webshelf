@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Webshelf</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <nav>
-            <a href="/">Webshelf</a>
-            <a href="{% url 'desk:dashboard' %}">Write</a>
-        </nav>
+{% extends "base.html" %} 
+{% block title %}Webshelf{% endblock %} 
+{% block content %}
 
-        <h2>latest books</h2>
-        {% for book in latest_book_list %}
-            <a href="{% url 'books:index' book.id %}">{{ book.title }}</a>
-        {% endfor %}
-    
-    </body>
-</html>
+<section class="p-2">
+    <h2 class="text-lg font-semibold text-gray-200">latest books</h2>
+
+    {% for book in latest_book_list %}
+    <!-- should probably make this an hx-get -->
+    <!-- TODO: change all drop shadows to shadow -->
+    <div
+        hx-get="{% url 'books:index' book.id %}"
+        hx-target="body"
+        hx-push-url="true"
+        class="mb-2 rounded cursor-pointer bg-gray-700 text-gray-300 shadow-md shadow-gray-900"
+    >
+        <h1 class="p-2 text-lg text-gray-200">{{ book.title }}</h1>
+
+        <div class="flex flex-wrap gap-2 px-2 pb-2 text-gray-300">
+            <p class="text-sm rounded p-1 shadow shadow-gray-800 bg-gray-700">test tag</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock %}

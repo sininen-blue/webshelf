@@ -1,11 +1,20 @@
-<nav class="flex items-center h-12 px-4 drop-shadow-md bg-gray-900 text-gray-100">
-    <a href="/">Back</a>
+<nav
+    id="main-nav"
+    class="flex gap-2 h-12 items-center bg-gray-800 px-4 text-gray-100 shadow-md shadow-gray-900"
+>
+    <a 
+        hx-get="/"
+        hx-target="body"
+    >Back</a>
 
-    <div class="flex gap-2 ml-auto">
-        <form>
-            <label class="opacity-0" for="search">search</label>
-            <input class="bg-gray-800" type="search" id="search">
-            <button class="relative right-6" type="submit"><i class="fas fa-search"></i></button>
+    <div class="w-full flex gap-2 ml-auto">
+        <form class="w-full flex">
+            <input
+                class="w-full bg-gray-700 rounded shadow-inner shadow-gray-800"
+                type="search"
+                id="search"
+            >
+            <button class="absolute right-6" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
 </nav>

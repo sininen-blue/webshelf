@@ -50,9 +50,11 @@
           >
             <i class="fas fa-search"></i>
           </button>
+
           <button
             hx-get="{% url 'shelf:search_partial' %}"
             hx-target="#main-nav"
+            hx-swap="outerHTML"
             class="inline sm:inline md:hidden"
             type="submit"
           >

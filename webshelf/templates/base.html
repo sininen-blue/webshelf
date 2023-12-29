@@ -15,7 +15,7 @@
 
     <nav
       id="main-nav"
-      class="flex h-12 items-center bg-gray-900 px-4 text-gray-100 drop-shadow-md"
+      class="flex h-12 items-center bg-gray-800 px-4 text-gray-100 shadow-md shadow-gray-900"
     >
       <div class="flex gap-2">
         <a href="{% url 'shelf:index' %}" class="text-xl">Webshelf</a>
@@ -38,16 +38,14 @@
       </div>
 
       <div class="ml-auto flex gap-2">
-        <form>
-          <label class="opacity-0" for="search">search</label>
+        <form class="flex">
           <input
-            class="hidden bg-gray-800 sm:hidden md:inline"
+            class="hidden bg-gray-700 sm:hidden md:inline rounded shadow-inner shadow-gray-800"
             type="search"
             id="search"
-          />
-
+          >
           <button
-            class="relative right-6 hidden sm:hidden md:inline"
+            class="absolute right-28 hidden md:inline"
             type="submit"
           >
             <i class="fas fa-search"></i>
@@ -55,7 +53,7 @@
           <button
             hx-get="{% url 'shelf:search_partial' %}"
             hx-target="#main-nav"
-            class="relative right-6 inline sm:inline md:hidden"
+            class="inline sm:inline md:hidden"
             type="submit"
           >
             <i class="fas fa-search"></i>

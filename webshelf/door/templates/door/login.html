@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Login | Webshelf{% endblock %}
+
+{% block content %}
+
 <form action="{% url 'door:login_view' %}" method="post">
     {% csrf_token %}
     {{ form }}
@@ -8,3 +13,4 @@
 <p>{{ error }}</p>
 {% endif %}
 
+{% endblock %}

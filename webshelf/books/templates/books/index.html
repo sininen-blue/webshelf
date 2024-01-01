@@ -8,8 +8,8 @@
 
     <img class="h-40 self-center" height="160" width="100" src="{% static book.cover.url %}">
 
-    <div class="w-full flex flex-col ml-4 gap-1">
-        <hgroup class="mb-2 mt-2">
+    <div class="w-full flex flex-col ml-2 gap-2">
+        <hgroup class="mb-1">
             <h1 class="text-2xl text-gray-200 font-semibold">
                 {{ book.title }}
             </h1>
@@ -18,18 +18,29 @@
 
         <button class="shadow shadow-sky-900 rounded px-1 py-2 font-semibold bg-sky-700 hover:bg-sky-600 text-white">Read</button>
         <div class="flex justify-between gap-2">
-            <button class="w-full shadow shadow-sky-900 rounded px-1 py-2 font-semibold bg-sky-700 hover:bg-sky-600 text-white">Follow</button>
-            <button class="w-full shadow shadow-sky-900 rounded px-1 py-2 font-semibold bg-sky-700 hover:bg-sky-600 text-white">Later</button>
+            <form class="w-full">
+                <input type="checkbox" id="follow" name="follow" value="followed" class="hidden peer">
+                <label for="follow" class="peer-checked:bg-sky-700 block text-center w-full shadow peer-checked:shadow-sky-900 shadow-gray-900 rounded px-1 py-2 font-semibold bg-gray-700 hover:bg-gray-600 text-white">Follow</label>
+            </form>
+            <form class="w-full">
+                <input type="checkbox" id="later" name="later" value="latered" class="hidden peer">
+                <label for="later" class="peer-checked:bg-sky-700 block text-center w-full shadow peer-checked:shadow-sky-900 shadow-gray-900 rounded px-1 py-2 font-semibold bg-gray-700 hover:bg-gray-600 text-white">Later</label>
+            </form>
         </div>
     </div>
 </header>
 
-<section>
+<section class="p-2 text-gray-200">
+    <!-- might have some multi line issues here -->
+    <p>{{ book.synopsis }}</p>
+
     <div class="flex text-gray-300">
         <p class="text-sm rounded p-1 shadow shadow-gray-800 bg-gray-700">test tag</p>
     </div>
-    <!-- might have some multi line issues here -->
-    <p>{{ book.synopsis }}</p>
+
+    <div clas="flex">
+        <p>views and shit here</p>
+    </div>
 </section>
 
 <section>

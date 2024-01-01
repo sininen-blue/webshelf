@@ -3,13 +3,25 @@
 
 {% block content %}
 
-<header class="px-2">
-    <hgroup class="mb-2">
-        <h1 class="text-xl text-gray-200 font-semibold">
-            {{ book.title }}
-        </h1>
-        <p class="text-gray-400">by {{ book.author }}</p>
-    </hgroup>
+<header class="p-2 flex">
+    {% load static %}
+
+    <img class="h-40 self-center" height="160" width="100" src="{% static book.cover.url %}">
+
+    <div class="w-full flex flex-col ml-4 gap-1">
+        <hgroup class="mb-2 mt-2">
+            <h1 class="text-2xl text-gray-200 font-semibold">
+                {{ book.title }}
+            </h1>
+            <p class="text-gray-400">by {{ book.author }}</p>
+        </hgroup>
+
+        <button class="shadow shadow-sky-900 rounded px-1 py-2 font-semibold bg-sky-700 hover:bg-sky-600 text-white">Read</button>
+        <div class="flex justify-between gap-2">
+            <button class="w-full shadow shadow-sky-900 rounded px-1 py-2 font-semibold bg-sky-700 hover:bg-sky-600 text-white">Follow</button>
+            <button class="w-full shadow shadow-sky-900 rounded px-1 py-2 font-semibold bg-sky-700 hover:bg-sky-600 text-white">Later</button>
+        </div>
+    </div>
 </header>
 
 <section>

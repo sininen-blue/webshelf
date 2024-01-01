@@ -5,6 +5,11 @@ from desk.models import AuthorProfile
 class Book(models.Model):
     author = models.ForeignKey(AuthorProfile, on_delete=models.CASCADE)
 
+    # TODO have a file name function
+    cover = models.ImageField(upload_to="covers/", height_field="cover_h", width_field="cover_w", default="covers/cover_default.jpg")
+    cover_w = models.IntegerField()
+    cover_h = models.IntegerField()
+
     title = models.CharField(max_length=256)
     synopsis = models.TextField(max_length=4096)
 

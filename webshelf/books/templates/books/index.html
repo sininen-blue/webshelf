@@ -3,52 +3,84 @@
 
 {% block content %}
 
-<header class="p-2 flex">
-    {% load static %}
+    <header class="flex p-2">
+        {% load static %}
 
-    <img class="h-40 self-center" height="160" width="100" alt="book cover" src="{% static book.cover.url %}">
+        <img class="self-center h-40"
+             height="160"
+             width="100"
+             alt="book cover"
+             src="{% static book.cover.url %}">
 
-    <div class="w-full flex flex-col ml-2 gap-2">
-        <hgroup class="mb-1">
-            <h1 class="text-2xl text-gray-200 font-semibold">
-                {{ book.title }}
-            </h1>
-            <p class="text-gray-400">by {{ book.author }}</p>
-        </hgroup>
+        <div class="flex flex-col gap-2 ml-2 w-full">
+            <hgroup class="mb-1">
+                <h1 class="text-2xl font-semibold text-gray-200">{{ book.title }}</h1>
+                <p class="text-gray-400">by {{ book.author }}</p>
+            </hgroup>
 
-        <button class="shadow shadow-sky-900 rounded px-1 py-2 font-semibold bg-sky-700 hover:bg-sky-600 text-white">Read</button>
-        <div class="flex justify-between gap-2">
-            <form class="w-full">
-                <input type="checkbox" id="follow" name="follow" value="followed" class="hidden peer">
-                <label for="follow" class="peer-checked:bg-sky-700 block text-center w-full shadow peer-checked:shadow-sky-900 shadow-gray-900 rounded px-1 py-2 font-semibold bg-gray-700 hover:bg-gray-600 text-white">Follow</label>
-            </form>
-            <form class="w-full">
-                <input type="checkbox" id="later" name="later" value="latered" class="hidden peer">
-                <label for="later" class="peer-checked:bg-sky-700 block text-center w-full shadow peer-checked:shadow-sky-900 shadow-gray-900 rounded px-1 py-2 font-semibold bg-gray-700 hover:bg-gray-600 text-white">Later</label>
-            </form>
+            <button class="py-2 px-1 font-semibold text-white rounded shadow shadow-sky-900 bg-sky-700 hover:bg-sky-600">
+                Read
+            </button>
+            <div class="flex gap-2 justify-between">
+                <form class="w-full">
+                    <input type="checkbox"
+                           id="follow"
+                           name="follow"
+                           value="followed"
+                           class="hidden peer">
+                    <label for="follow"
+                           class="block py-2 px-1 w-full font-semibold text-center text-white bg-gray-700 rounded shadow hover:bg-gray-600 peer-checked:bg-sky-700 peer-checked:shadow-sky-900 shadow-gray-900">
+                        Follow
+                    </label>
+                </form>
+                <form class="w-full">
+                    <input type="checkbox"
+                           id="later"
+                           name="later"
+                           value="latered"
+                           class="hidden peer">
+                    <label for="later"
+                           class="block py-2 px-1 w-full font-semibold text-center text-white bg-gray-700 rounded shadow hover:bg-gray-600 peer-checked:bg-sky-700 peer-checked:shadow-sky-900 shadow-gray-900">
+                        Later
+                    </label>
+                </form>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<section class="p-2 text-gray-200">
-    <!-- might have some multi line issues here -->
-    <p>{{ book.synopsis }}</p>
+    <section class="p-2 text-gray-200">
+        <p>{{ book.synopsis }}</p>
 
-    <div class="flex text-gray-300">
-        <p class="text-sm rounded p-1 shadow shadow-gray-800 bg-gray-700">test tag</p>
-    </div>
+        <div class="flex text-gray-300">
+            <p class="p-1 text-sm bg-gray-700 rounded shadow shadow-gray-900">test tag</p>
+        </div>
 
-    <div clas="flex">
-        <p>views and shit here</p>
-    </div>
-</section>
+        <div clas="flex">
+            <p>views and shit here</p>
+        </div>
+    </section>
 
-<section>
-    <ol>
-        {% for chapter in chapter_list %}
-        <li><a href="{% url 'books:read_chapter' book.id chapter.chapter_number %}">{{ chapter.title }}</a></li>
-        {% endfor %}
-    </ol>
-</section>
+    <section class="p-2 mx-2 bg-gray-700 rounded shadow shadow-gray-900">
+        <p>put form here</p>
+    </section>
+
+    <section class="p-2 mx-2 bg-gray-700 rounded shadow shadow-gray-900">
+        <h1 class="text-lg font-semibold text-gray-300">Table of Contents</h1>
+
+        <table class="w-full border border-gray-700 border-collapse">
+            <tbody>
+                {% for chapter in chapter_list %}
+                    <tr class="[&:nth-child(even)_td]:bg-gray-800">
+                        <td class="pl-1 text-left text-gray-200 rounded-l">
+                            <a href="{% url 'books:read_chapter' book.id chapter.chapter_number %}">{{ chapter.title }}</a>
+                        </td>
+                        <td class="pr-1 text-right text-gray-300 rounded-r">
+                            <p>no date for now</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
 
 {% endblock %}

@@ -806,6 +806,10 @@ select {
   margin-top: 1rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -844,6 +848,14 @@ select {
 
 .h-8 {
   height: 2rem;
+}
+
+.max-h-24 {
+  max-height: 6rem;
+}
+
+.min-h-24 {
+  min-height: 6rem;
 }
 
 .w-full {
@@ -892,6 +904,24 @@ select {
 
 .self-center {
   align-self: center;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-clip {
+  text-overflow: clip;
 }
 
 .rounded {

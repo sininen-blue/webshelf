@@ -1,14 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
+    content: [
         "webshelf/books/templates/**/*.html",
         "webshelf/desk/templates/**/*.html",
         "webshelf/door/templates/**/*.html",
         "webshelf/shelf/templates/**/*.html",
         "webshelf/templates/**/*.html"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+    theme: {
+        extend: {},
+    },
+    plugins: [
+        require('@tailwindcss/forms'),
+    ],
 }
 

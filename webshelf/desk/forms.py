@@ -12,3 +12,7 @@ class ChapterForm(ModelForm):
     class Meta:
         model = Chapter
         fields = ["title", "content"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["title"].widget.attrs.update({"class": "bg-blue-700"})

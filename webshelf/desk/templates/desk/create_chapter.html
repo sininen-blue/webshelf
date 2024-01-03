@@ -2,6 +2,7 @@
 {% block title %}New Chapter | Webshelf{% endblock %}
 
 {% block content %}
+<div class="bg-blue-700"></div>
 <form action="{% url 'desk:create_chapter' book.id %}" method="post">
     {% csrf_token %}
     {{ form }}

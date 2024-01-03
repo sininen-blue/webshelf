@@ -28,9 +28,29 @@ class Book(models.Model):
 
 
 class Chapter(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="chapters")
 
     chapter_number = models.IntegerField()
 
+    created_date = models.DateTimeField(auto_now_add=True)
+
     title = models.CharField(max_length=256)
     content = models.TextField()
+
+
+class Review(models.Model):
+    author = models.ForeignKey(AuthorProfile, on_delete=models.CASCADE, related_name="reviews")
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="reviews")
+
+    title = models.CharField(max_length=256)
+    content = models.CharField(max_length=4096)
+
+
+class Rating(models.Model):
+    author = models.ForeignKey(AuthorProfile, on_delete=models.CASCADE, related_name="ratings")
+    quality_choice = {
+        "Poorly": "poorly",
+        "Well": "well",
+    }
+    quality_rating = models.CharField(max_length=8, choices=quality_choice)
+    popularity_rating = models.IntegerField(default=0)

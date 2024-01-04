@@ -23,3 +23,10 @@ def read_chapter(request, book_id, chapter_number):
         "last_chapter": len(chapter_list) + 1,
     }
     return render(request, "books/chapter.html", context)
+
+
+def add_review(request, book_id):
+    context = {
+        "review": "review"
+    }
+    return render(request, "books/add_review.html", context)

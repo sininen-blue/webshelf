@@ -131,6 +131,7 @@
 
     <section class="m-2 text-gray-300">
         <h1 class="text-xl font-semibold">Reviews</h1>
+        <button hx-get="{% url 'books:add_review' book.id %}" hx-swap="afterend">Write a Review</button>
 
         {% if book.reviews.all %}
             {% for review in book.reviews.all %}

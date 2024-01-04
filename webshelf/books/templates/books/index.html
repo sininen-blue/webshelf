@@ -48,8 +48,8 @@
         </div>
     </header>
 
-    <section class="p-2 mx-2 mb-2 bg-gray-700 rounded shadow shadow-gray-900 text-gray-200">
-        <div class="max-h-24 mb-8 overflow-hidden">
+    <section class="p-2 mx-2 mb-2 text-gray-200 bg-gray-700 rounded shadow shadow-gray-900">
+        <div class="overflow-hidden mb-8 max-h-24">
             <p>{{ book.synopsis }}</p>
         </div>
 
@@ -109,14 +109,16 @@
     </section>
 
     <section class="p-2 mx-2 bg-gray-700 rounded shadow shadow-gray-900">
-        <h1 class="text-lg font-semibold text-gray-300">Table of Contents</h1>
+        <h1 class="text-lg font-semibold text-gray-300">
+            Table of Contents <i class="fas fa-sort-amount-down-alt"></i>
+        </h1>
 
         <table class="w-full border border-gray-700 border-collapse">
             <tbody>
                 {% for chapter in book.chapters.all %}
                     <tr class="[&:nth-child(even)_td]:bg-gray-800">
                         <td class="pl-1 text-left text-gray-200 rounded-l">
-                            <a href="{% url 'books:read_chapter' book.id chapter.chapter_number %}">{{ chapter.title }}</a>
+                            <a href="{% url 'books:read_chapter' book.id chapter.chapter_number %}">{{ chapter.chapter_number }}. {{ chapter.title }}</a>
                         </td>
                         <td class="pr-1 text-right text-gray-300 rounded-r">
                             <p>{{ chapter.created_date }}</p>
@@ -127,4 +129,23 @@
         </table>
     </section>
 
+    <section class="m-2 text-gray-300">
+        <h1 class="text-xl font-semibold">Reviews</h1>
+
+        {% if book.reviews.all %}
+            {% for review in book.reviews.all %}
+                <div class="pb-4 border-b-2 border-gray-700">
+                    <h1 class="text-xl text-gray-400">
+                        {{ review.title }} <span class="text-base text-gray-600">by {{ review.author }}</span>
+                    </h1>
+                    <p>{{ review.content }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center text-gray-500">
+                <p class="text-lg">No reviews</p>
+                <p>Be the first</p>
+            </div>
+        {% endif %}
+    </section>
 {% endblock %}

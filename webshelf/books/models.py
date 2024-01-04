@@ -6,7 +6,12 @@ class Book(models.Model):
     author = models.ForeignKey(AuthorProfile, on_delete=models.CASCADE)
 
     # TODO have a file name function
-    cover = models.ImageField(upload_to="covers/", height_field="cover_h", width_field="cover_w", default="covers/cover_default.jpg")
+    cover = models.ImageField(
+        upload_to="covers/",
+        height_field="cover_h",
+        width_field="cover_w",
+        default="covers/cover_default.jpg",
+    )
     cover_w = models.IntegerField(default=0)
     cover_h = models.IntegerField(default=0)
 
@@ -39,7 +44,9 @@ class Chapter(models.Model):
 
 
 class Review(models.Model):
-    author = models.ForeignKey(AuthorProfile, on_delete=models.CASCADE, related_name="reviews")
+    author = models.ForeignKey(
+        AuthorProfile, on_delete=models.CASCADE, related_name="reviews"
+    )
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="reviews")
 
     title = models.CharField(max_length=256)
@@ -47,7 +54,9 @@ class Review(models.Model):
 
 
 class Rating(models.Model):
-    author = models.ForeignKey(AuthorProfile, on_delete=models.CASCADE, related_name="ratings")
+    author = models.ForeignKey(
+        AuthorProfile, on_delete=models.CASCADE, related_name="ratings"
+    )
     quality_choice = {
         "Poorly": "poorly",
         "Well": "well",
